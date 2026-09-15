@@ -22,12 +22,13 @@ connectDB();
 
 // Middlewares
 app.use(helmet({
-  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
+  crossOriginOpenerPolicy: false,
+  crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://127.0.0.1:5173', 'http://127.0.0.1:5174'];
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin) || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
+    if (!origin || allowedOrigins.includes(origin) || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL) || (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
