@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-900 text-text-main font-sans antialiased selection:bg-brand-blue selection:text-white m-0 min-h-screen overflow-x-hidden;
+  }
+}
+
+.glass-card {
+  @apply bg-navy-800/80 backdrop-blur-md border border-navy-700/50 rounded-xl shadow-xl;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-blue to-brand-green;
+}
+
+.hover-glass {
+  @apply hover:bg-navy-700/80 hover:border-brand-blue/30 transition-all duration-300;
+}
