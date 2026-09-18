@@ -318,9 +318,9 @@ export default function Home() {
               <div>
                 <button 
                   onClick={() => handleSubscribe("Stock Market Online Class")}
-                  disabled={loading}
+                  disabled={loadingId === getProductId("Stock Market Online Class")}
                   className="w-full sm:w-auto px-10 py-4 bg-brand-green text-navy-900 hover:bg-green-400 font-bold text-lg rounded-lg transition-all shadow-lg shadow-brand-green/20 inline-block text-center mr-4">
-                  {loading ? 'Processing...' : 'Enroll Now'}
+                  {loadingId === getProductId("Stock Market Online Class") ? 'Processing...' : 'Enroll Now'}
                 </button>
               </div>
             </div>
