@@ -3,13 +3,14 @@ import api from '../api/client';
 import { useNavigate } from 'react-router-dom';
 
 export default function usePayment() {
-  const [loading, setLoading] = useState(false);
+  const [loadingId, setLoadingId] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handlePayment = async (productId) => {
+    if (!productId) return;
     try {
-      setLoading(true);
+      setLoadingId(productId);
       setError(null);
       
       // 1. Check if authenticated
@@ -59,8 +60,8 @@ export default function usePayment() {
           }
         },
         prefill: {
-          name: '', // We could fetch from profile context
-          email: '', // We could fetch from profile context
+          name: '', 
+          email: '',
           contact: ''
         },
         theme: {
@@ -84,9 +85,9 @@ export default function usePayment() {
           alert(err.response?.data?.message || err.message);
       }
     } finally {
-      setLoading(false);
+      setLoadingId(null);
     }
   };
 
-  return { handlePayment, loading, error };
+  return { handlePayment, loadingId, error };
 }

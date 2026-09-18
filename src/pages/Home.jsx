@@ -23,7 +23,7 @@ import usePayment from '../hooks/usePayment';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const { handlePayment, loading } = usePayment();
+  const { handlePayment, loadingId } = usePayment();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -266,9 +266,9 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-            <PricingCard title="MONTHLY PLAN" price={getProductPrice("Monthly Advisory")} features={featuresAdvisory} onClick={() => handleSubscribe("Monthly Advisory")} loading={loading} />
-            <PricingCard title="QUARTERLY PLAN" price={getProductPrice("Quarterly Advisory")} features={featuresAdvisory} recommended onClick={() => handleSubscribe("Quarterly Advisory")} loading={loading} />
-            <PricingCard title="YEARLY PLAN" price={getProductPrice("Yearly Advisory")} features={featuresAdvisory} bestValue onClick={() => handleSubscribe("Yearly Advisory")} loading={loading} />
+            <PricingCard title="MONTHLY PLAN" price={getProductPrice("Monthly Advisory")} features={featuresAdvisory} onClick={() => handleSubscribe("Monthly Advisory")} loading={loadingId === getProductId("Monthly Advisory")} />
+            <PricingCard title="QUARTERLY PLAN" price={getProductPrice("Quarterly Advisory")} features={featuresAdvisory} recommended onClick={() => handleSubscribe("Quarterly Advisory")} loading={loadingId === getProductId("Quarterly Advisory")} />
+            <PricingCard title="YEARLY PLAN" price={getProductPrice("Yearly Advisory")} features={featuresAdvisory} bestValue onClick={() => handleSubscribe("Yearly Advisory")} loading={loadingId === getProductId("Yearly Advisory")} />
           </div>
         </div>
       </section>

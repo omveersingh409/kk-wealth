@@ -8,7 +8,7 @@ import usePayment from '../hooks/usePayment';
 
 export default function OnlineClasses() {
   const [products, setProducts] = useState([]);
-  const { handlePayment, loading } = usePayment();
+  const { handlePayment, loadingId } = usePayment();
   const [activeFaq, setActiveFaq] = useState(null);
   const [activeModule, setActiveModule] = useState(0);
 
@@ -34,6 +34,7 @@ export default function OnlineClasses() {
     const product = products.find(p => p.name === name);
     return product && product.originalPrice ? product.originalPrice.toLocaleString() : '...';
   };
+  const getProductId = (name) => products.find(p => p.name === name)?._id || null;
 
   const handleSubscribe = (name) => {
     const product = products.find(p => p.name === name);
@@ -90,8 +91,8 @@ export default function OnlineClasses() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={() => handleSubscribe(courseTitle)} disabled={loading} className="px-8 py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-xl shadow-brand-blue/20 flex justify-center items-center gap-2 text-lg">
-                  {loading ? 'Processing...' : 'Enroll Now'} <Play size={20} fill="currentColor" />
+                <button onClick={() => handleSubscribe(courseTitle)} disabled={loadingId === getProductId(courseTitle)} className="px-8 py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-xl shadow-brand-blue/20 flex justify-center items-center gap-2 text-lg">
+                  {loadingId === getProductId(courseTitle) ? 'Processing...' : 'Enroll Now'} <Play size={20} fill="currentColor" />
                 </button>
                 <a href="#syllabus" className="px-8 py-4 bg-navy-800 hover:bg-navy-700 text-white font-bold rounded-xl transition-all border border-navy-700 flex justify-center items-center gap-2 text-lg">
                   View Syllabus
@@ -361,8 +362,8 @@ export default function OnlineClasses() {
           <h2 className="text-4xl md:text-5xl font-black text-white mb-8">Ready to Learn and Make Smarter Market Decisions?</h2>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => handleSubscribe(courseTitle)} disabled={loading} className="px-10 py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-xl shadow-brand-blue/20 flex justify-center items-center gap-2 text-lg">
-              {loading ? 'Processing...' : 'Enroll Now'} <Play size={20} fill="currentColor" />
+            <button onClick={() => handleSubscribe(courseTitle)} disabled={loadingId === getProductId(courseTitle)} className="px-10 py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all shadow-xl shadow-brand-blue/20 flex justify-center items-center gap-2 text-lg">
+              {loadingId === getProductId(courseTitle) ? 'Processing...' : 'Enroll Now'} <Play size={20} fill="currentColor" />
             </button>
             <a href="/advisory" className="px-10 py-4 bg-navy-800 hover:bg-navy-700 text-white font-bold rounded-xl transition-all border border-navy-700 flex justify-center items-center gap-2 text-lg">
               Explore Advisory

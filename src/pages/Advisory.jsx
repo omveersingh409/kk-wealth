@@ -8,7 +8,7 @@ import usePayment from '../hooks/usePayment';
 
 export default function Advisory() {
   const [products, setProducts] = useState([]);
-  const { handlePayment, loading } = usePayment();
+  const { handlePayment, loadingId } = usePayment();
   const [activeFaq, setActiveFaq] = useState(null);
 
   useEffect(() => {
@@ -90,8 +90,8 @@ export default function Advisory() {
                       <FeatureList text="Multibagger opportunities" />
                     </ul>
                   </div>
-                  <button onClick={() => handleSubscribe("Monthly Advisory")} disabled={loading} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
-                    {loading ? 'Processing...' : 'Subscribe Now'}
+                  <button onClick={() => handleSubscribe("Monthly Advisory")} disabled={loadingId === getProduct("Monthly Advisory")._id} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
+                    {loadingId === getProduct("Monthly Advisory")._id ? 'Processing...' : 'Subscribe Now'}
                   </button>
                </div>
 
@@ -116,8 +116,8 @@ export default function Advisory() {
                       <FeatureList text="Multibagger opportunities" />
                     </ul>
                   </div>
-                  <button onClick={() => handleSubscribe("Quarterly Advisory")} disabled={loading} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
-                    {loading ? 'Processing...' : 'Subscribe Now'}
+                  <button onClick={() => handleSubscribe("Quarterly Advisory")} disabled={loadingId === getProduct("Quarterly Advisory")._id} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
+                    {loadingId === getProduct("Quarterly Advisory")._id ? 'Processing...' : 'Subscribe Now'}
                   </button>
                </div>
 
@@ -142,8 +142,8 @@ export default function Advisory() {
                       <FeatureList text="Multibagger opportunities" />
                     </ul>
                   </div>
-                  <button onClick={() => handleSubscribe("Yearly Advisory")} disabled={loading} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
-                    {loading ? 'Processing...' : 'Subscribe Now'}
+                  <button onClick={() => handleSubscribe("Yearly Advisory")} disabled={loadingId === getProduct("Yearly Advisory")._id} className="w-full py-4 bg-brand-blue hover:bg-blue-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-brand-blue/30 disabled:opacity-50 disabled:transform-none">
+                    {loadingId === getProduct("Yearly Advisory")._id ? 'Processing...' : 'Subscribe Now'}
                   </button>
                </div>
                
